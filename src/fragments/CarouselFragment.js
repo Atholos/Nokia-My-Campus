@@ -37,7 +37,7 @@ const CarouselFragment = (props) => {
     };
 
     return {
-        Restaurant,
+        Restaurant
     };
 
 };

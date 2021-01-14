@@ -36,7 +36,6 @@ const RWidget = (props) =>{
     /*eslint-enable */
     useEffect(()=> {
         menuByDate(date).then(result => {
-            console.log(result)
             if(result.courses != null){
                 setMenuData(result);
             }
