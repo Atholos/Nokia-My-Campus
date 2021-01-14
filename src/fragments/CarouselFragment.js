@@ -9,7 +9,7 @@ import Carousel from "react-material-ui-carousel";
 import RestaurantHeatMapView from "../views/restaurantHeatMap";
 import useStyle from "../styles/restaurantStyles";
 
-const CarouselFragment = (props) => {
+const CarouselFragment = () => {
     const classes = useStyle();
     const {TabRestaurantChart, TabRestaurantDonut, TabRestaurantMenu, TabRestaurantWeek} = TabFragments();
 
