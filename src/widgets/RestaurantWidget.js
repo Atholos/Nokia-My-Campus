@@ -22,9 +22,9 @@ const RWidget = (props) =>{
     const [menuData, setMenuData] = useState({
         courses: {
             1:{
-                title_fi: "",
-                title_en: "",
-                category: "",
+                title_fi: "Ei dataa saatavilla",
+                title_en: "No data available",
+                category: "Restaurant",
                 price: "",
                 properties: "",
             },
@@ -35,7 +35,12 @@ const RWidget = (props) =>{
 
     /*eslint-enable */
     useEffect(()=> {
-        menuByDate(date).then(result => setMenuData(result));
+        menuByDate(date).then(result => {
+            console.log(result)
+            if(result.courses != null){
+                setMenuData(result);
+            }
+        });
     },[]); //eslint-disable-line
 
     //this renders the widget by mapping the different menu items and lines into carousel items

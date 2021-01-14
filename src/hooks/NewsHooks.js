@@ -22,9 +22,6 @@ const fetchGetUrl = async (url, userKey) => {
   }
 };
 
-
-
-
 const NewsHooks = () => {
 
   const {newsitemsUrl, highlightnewsUrl} = ApiUrls()
