@@ -31,16 +31,16 @@ const ParkingWidget = (data) =>  {
 
     const {onItemClickNavigate} = GlobalFunctions();
 	const {getParkingStatus} = API();
-	
+
 	let elements = [];
-	
+
 	//Create a layout element for each zone id given to the widget
 	(data.zones).forEach((zone) => {
 		const estimated = zone === 'P10EV';
 		const loading = parkingStatus[zone] !== undefined;
-		elements.push(ParkingCardFragment().singleAreaWidget({id: zone, usageData: parkingStatus[zone], estimate: estimated, loading: loading}, gridLayout));
+		elements.push(ParkingCardFragment().createZoneItem({id: zone, usageData: parkingStatus[zone], estimate: estimated, loading: loading}, gridLayout));
 	});
-	
+
 	//Place the previously generated layouts in a grid if grid layout is enabled
 	if (gridLayout) {
 		elements.forEach((element, index, array) => {
@@ -48,7 +48,7 @@ const ParkingWidget = (data) =>  {
 		});
 		elements = (<Grid container>{elements}</Grid>);
 	};
-	
+
 	if ("showAllButton" in data && data.showAllButton === true) {
 		elements.push(<Button onClick={()=>onItemClickNavigate('/parking')}>{strings.parkingViewAll}</Button>);
 	};

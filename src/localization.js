@@ -149,6 +149,7 @@ let strings = new LocalizedStrings({
         topBarMenuItemP5: "P5",
         topBarMenuItemP10: "P10",
         topBarMenuItemParking: "Pysäköinti",
+        topBarMenuItemInfo: "Info",
         topBarMenuItemLogout: "Kirjaudu Ulos",
         infoPageHeading: "MyCampus on Nokian työntekijöille tarkoitettu sovellus, joka tarjoaa tiettyä dataa Nokian Espoon kampukselta. Levitezer-niminen startup, yhteistyössä Nokian kanssa,"+
         "on ollut tekemässä MyCampusta. Opiskelijat Metropolia Ammattikorkeakoulusta ovat olleet tekemässä mobiilisovellusta.",
@@ -296,7 +297,7 @@ let strings = new LocalizedStrings({
         toPasswordReset: "Till lösenord återställning",
         lines: "Linjer",
         currentStatsAre:"Välkommen till MyCampus!",
-        newspage: "Campus nyheter", 
+        newspage: "Campus nyheter",
         dialogTitle: "Välj din widget",
         donut: "Donits",
         remWidgets: "Är du säker att du will radera dina widgets?",
