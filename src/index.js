@@ -8,13 +8,11 @@ import App from './App';
 import {CssBaseline} from '@material-ui/core';
 //import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
-import Data from './hooks/Data'
 import {applyMiddleware, createStore} from 'redux';
 import RootReducer from './reducers/RootReducer';
 import thunk from 'redux-thunk';
 import localStorageOperations from './hooks/LocalStorageOperations';
 
-const {SW_INIT, SW_UPDATE} = Data();
 const {saveState, loadState} = localStorageOperations();
 const persistedState = loadState();
 
