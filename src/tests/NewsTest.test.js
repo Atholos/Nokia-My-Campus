@@ -46,7 +46,7 @@ describe('News', () => {
     shallow.cleanUp();
   });
 
-  it('should work', () => {
+  it('Mounting News', () => {
     const tree = mount(<News/>);
     console.log(tree);
     expect(tree).toMatchSnapshot();
@@ -54,7 +54,7 @@ describe('News', () => {
 
   it('testing highlight snapshot', () => {
     const tree = mount(<HighlightItem highlight={highlight} />);
-    console.log(tree);
+    console.log( tree);
     expect(tree).toMatchSnapshot();
   });
 });

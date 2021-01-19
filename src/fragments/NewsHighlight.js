@@ -23,7 +23,7 @@ const HighlightItem = (props) => {
   const dispatch = useDispatch();
   // When navigating we're adding the item to redux/localstorage state so when user refreshes it doesn't lose the currently selected article and show an empty page
   return (
-    <>
+    
       <Paper elevation={0} className={classes.root}>
         <CardActionArea
           onClick={() => {
@@ -52,7 +52,7 @@ const HighlightItem = (props) => {
           <Chip label="Highlight" color="primary" />
         </CardActions>
       </Paper>
-    </>
+    
   );
 };
 
