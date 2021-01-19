@@ -10,7 +10,7 @@ describe('News', () => {
     description:
       "Nokia halloween party this saturday at dream cafe! Come join us for some eerie fun",
     timestamp: "October 20, 2020",
-    imgUrl: require("../assets/pexels-wilson-vitorino-3230473.jpg"),
+    imgUrl: require("../assets/default.jpg"),
     imgTitle: "Halloween Party",
     paragraphs: {
       1: "This is the world we live in",
@@ -28,8 +28,8 @@ describe('News', () => {
     Elitr iudicabit eloquentiam cu vim. Graecis mediocritatem his in, ne erant harum soleat cum. In natum propriae mel. Quod impetus.`,
     },
     paragraphImg: {
-      2: require("../assets/pexels-wilson-vitorino-3230473.jpg"),
-      5: require("../assets/pexels-wilson-vitorino-3230473.jpg"),
+      2: require("../assets/default.jpg"),
+      5: require("../assets/default.jpg"),
     },
   };
 
