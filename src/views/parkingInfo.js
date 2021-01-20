@@ -27,38 +27,46 @@ const ParkingInfo = () => {
 	const {getParkingStatus, getParkingData, getParkingAreaName} = API();
 	const {formattedFullDate} = GlobalFunctions();
     const {isLoggedIn} = Authentication();
-	
+
 	const [tableData, setTableData] = useState([[strings.parkingTotalSpaces, ""], [strings.parkingUsedSpaces, ""], [strings.parkingAvailableSpaces, ""]]);
 	const [dataToday, setDataToday] = useState(null);
 	const [dataWeekAgo, setDataWeekAgo] = useState(null);
 	const [capacity, setCapacity] = useState(null);
-	
+
 	const zone = window.location.pathname.split('/').pop();
 	const name = getParkingAreaName(zone);
-	
+
 	//Data from one week ago will be used to predict usage for today
 	const expectedDataDate = new Date();
 	expectedDataDate.setDate(expectedDataDate.getDate() - 7);
-	
-	
-	
+
+
+
 	useEffect(()=>{
-		
+
 		getParkingStatus(zone).then( usageData => {
-			setTableData([[strings.parkingTotalSpaces, ""+usageData["capacity"]], [strings.parkingUsedSpaces, ""+usageData["count"]], [strings.parkingAvailableSpaces, ""+(usageData["capacity"]-usageData["count"])]]);
+			let count = usageData["count"];
+			let capacity = usageData["capacity"];
+			if(usageData["count"] < 0){
+				count = usageData["count"]*-1
+			}
+			else if(usageData["capacity"] < 0){
+				capacity = usageData["capacity"]*-1
+			}
+			setTableData([[strings.parkingTotalSpaces, ""+capacity], [strings.parkingUsedSpaces, ""+count], [strings.parkingAvailableSpaces, ""+(capacity-count)]]);
 			setCapacity(usageData["capacity"]);
 		});
-		
+
 		getParkingData(zone, formattedFullDate(new Date())).then(json => {
 			setDataToday(json);
 		});
-		
+
 		getParkingData(zone, formattedFullDate(expectedDataDate)).then(json => {
 			setDataWeekAgo(json);
 		});
 	// eslint-disable-next-line	react-hooks/exhaustive-deps
 	}, []);
-	
+
     const ParkingInfoPage = () => {
 		const {TopNavigationBar} = NaviBar();
 		return (
@@ -88,7 +96,7 @@ const ParkingInfo = () => {
 	} else {
 		return <AuthLoading/>;
 	}
-		
+
 };
 
 export default ParkingInfo;
