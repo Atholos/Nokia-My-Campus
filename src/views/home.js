@@ -9,7 +9,7 @@ import Authentication from '../hooks/Authentication';
 import NaviBar from '../fragments/TopNavigationBarFragment';
 import AuthLoading from '../views/authLoading';
 import MuiThemes from "../styles/muiThemes";
-import strings from "../localization";
+//import strings from "../localization";
 import blue from '@material-ui/core/colors/blue';
 import Widgets from '../fragments/WidgetFragment';
 import EditButton from '../fragments/EditButton';
@@ -20,7 +20,7 @@ const Home = (props) => {
   const {TopNavigationBar} = NaviBar();
   const {PageTheme} = MuiThemes();
   const {EditIconButton} = EditButton();
-  
+
   const HomePage = () => {
 
     const colorB = blue[500];
@@ -30,7 +30,7 @@ const Home = (props) => {
         marginTop: '10px',
         marginBottom: '10px',
         color: colorB,
-      }, 
+      },
     });
 
     return (
@@ -42,9 +42,7 @@ const Home = (props) => {
               <Grid item xs={10}>
               {EditIconButton()}
                 <Grid item xs>
-                  <h3 className={barTheme.headLine}>
-                    {strings.currentStatsAre}
-                  </h3>
+
                 </Grid>
               </Grid>
               {HomepageWidget()}

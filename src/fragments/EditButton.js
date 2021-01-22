@@ -21,9 +21,9 @@ when a person has 1 or more widgets selected on the homepage.
 */
 const EditButton = () =>  {
     const [buttonDisabled, setButtonDisabled] = useState(true);
-    const classes = editButtonStyles()
-    const editList = ['Yes', 'No']
-    
+    const classes = editButtonStyles();
+    const editList = ['Yes', 'No'];
+
     //Redux states
     const selectedWidgets = useSelector(state => state.WidgetReducer);
     //const editMode = useSelector(state => state.EditModeReducer)
@@ -35,7 +35,7 @@ const EditButton = () =>  {
         const handleClose = () => {
             onClose(selectedValue);
        };
-   
+
        const handleListItemClick = (value) => {
            onClose(value);
        };
@@ -70,7 +70,7 @@ const EditButton = () =>  {
             setButtonDisabled(false);
         } else {
             setButtonDisabled(true);
-        };
+        }
     };
 
     // Removes all states from selectedWidgets
@@ -82,7 +82,7 @@ const EditButton = () =>  {
         toggleButton();
     });
 
-    
+
 
     const EditIconButton = () => {
         const [selectedValue, setSelectedValue] = useState('No');
@@ -91,9 +91,9 @@ const EditButton = () =>  {
         const handleClickOpen = () => {
             setOpen(true);
           };
-        
+
           //Closes the dialog window and saves the value in selectedwidgets array
-        const handleClose = (value) => {       
+        const handleClose = (value) => {
             setOpen(false);
             setSelectedValue(value);
           };
@@ -102,7 +102,7 @@ const EditButton = () =>  {
         useEffect(() => {
             if(selectedValue==='Yes'){
                 RemoveAll();
-            };
+            }
         }), [selectedValue];
 
         return (
@@ -114,7 +114,7 @@ const EditButton = () =>  {
             </Grid>
         )
     };
-    
+
 return {
     EditIconButton,
     };

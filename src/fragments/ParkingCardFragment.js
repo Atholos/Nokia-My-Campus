@@ -104,7 +104,6 @@ const ParkingCardFragment = () => {
 				}
 				utilizationString = utilizationString.replace("{0}", (zone.usageData.capacity-zone.usageData.count)).replace("{1}", zone.usageData.capacity);
 			}
-
 		}
 
 		let link;

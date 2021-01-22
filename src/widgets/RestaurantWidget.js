@@ -10,13 +10,16 @@ import useStyle from "../styles/restaurantStyles";
 import API from "../hooks/ApiHooks";
 import strings from "../localization";
 import Carousel from "react-material-ui-carousel";
+import { useDispatch } from 'react-redux';
+import { menu } from './../actions/RestaurantActions';
 
 //this function is used to create a menu widget
-const RWidget = (props) =>{
+const RWidget = () =>{
 
     const classes = useStyle();
     const {menuByDate} = API();
     const date = new Date();
+    const dispatch = useDispatch();
 
     //This state has dummy data so that the program has something to render while the fetch is still going
     const [menuData, setMenuData] = useState({
@@ -33,14 +36,24 @@ const RWidget = (props) =>{
 
     //this useEffect gets the menu data and replaces the dummy data with actual data
 
-    /*eslint-enable */
-    useEffect(()=> {
-        menuByDate(date).then(result => {
-            if(result.courses != null){
-                setMenuData(result);
-            }
-        });
-    },[]); //eslint-disable-line
+    const dispatchMenu = () =>{
+        const menuF = menuByDate(date)
+            .then(res => dispatch(menu(res)));
+        return menuF;
+    };
+
+    const getMenu = async () => {
+        const daily = await dispatchMenu();
+        if(daily.value.courses !== null && daily.value.courses !== undefined){
+            setMenuData(daily.value);
+        }
+    };
+
+    console.log(menuData);
+
+    useEffect(() => {
+        getMenu()
+    },[menuData]); //eslint-disable-line
 
     //this renders the widget by mapping the different menu items and lines into carousel items
     //I tried adding a donut chart here as an carousel item but that causes the map to create a scrollable list instead of carousel items

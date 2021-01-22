@@ -4,9 +4,9 @@ const NewsReducer = (state = {}, action) => {
 
         case 'CURRENT':
             if(action.value !== {})
-                return state = action.value
+                return state = action.value;
             else
-                return state
+                return state;
 
         default:
             return state;

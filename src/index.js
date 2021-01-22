@@ -7,12 +7,15 @@ import './index.css';
 import App from './App';
 import {CssBaseline} from '@material-ui/core';
 //import * as serviceWorker from './serviceWorker';
+import Data from './hooks/Data'
 import {Provider} from 'react-redux';
 import {applyMiddleware, createStore} from 'redux';
 import RootReducer from './reducers/RootReducer';
 import thunk from 'redux-thunk';
 import localStorageOperations from './hooks/LocalStorageOperations';
 
+
+const {SW_INIT, SW_UPDATE} = Data();
 const {saveState, loadState} = localStorageOperations();
 const persistedState = loadState();
 
@@ -40,12 +43,26 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 
+/*
+serviceWorker.register({
+    onSuccess: () => store.dispatch({type: SW_INIT}),
+    onUpdate: registration => store.dispatch(
+        {type: SW_UPDATE, payload: registration}),
+});
+*/
 
 if ('serviceWorker' in navigator){
     window.addEventListener('load', () => {
         navigator.serviceWorker
             .register('./serviceWorker.js')
+            .then({
+                onSuccess: () => store.dispatch(
+                    {type: SW_INIT}),
+                onUpdate: registration => store.dispatch(
+                    {type: SW_UPDATE, payload: registration}),
+            })
             .then(reg => console.log('service Worker: registered'))
             .catch(err => console.log(`Service Worker: Error: ${err}`))
     })
 }
+

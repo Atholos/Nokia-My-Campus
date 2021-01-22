@@ -10,7 +10,7 @@ import {useState, useEffect} from 'react'
 
 const NewsBrowseWidget = () =>  {
     const { getNewsItems } = NewsHooks();
-    const [tileData, setTileData] = useState(null)
+    const [tileData, setTileData] = useState(null);
 
     // fetching 10 freshed news
   const updateNews = async () => {
@@ -21,8 +21,8 @@ const NewsBrowseWidget = () =>  {
 
   useEffect(() => {
     updateNews()
-  },[])//eslint-disable-line
-    
+  },[]); //eslint-disable-line
+
     return (
         <NewsBrowseGrid tileData={tileData} />
     );
