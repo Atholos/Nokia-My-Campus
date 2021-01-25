@@ -1,12 +1,13 @@
-const MenuReducer = (state = {}, action) => {
+const MenuReducer = (state = [], action) => {
 
     switch(action.type){
 
         case 'MENU':
-            if(action.value !== {})
-                return state = action.value;
-            else
-                return state;
+            if(!state.includes(action.value)){
+                return state.concat(action.value);
+            } else {
+                return state
+            }
 
         default:
             return state;

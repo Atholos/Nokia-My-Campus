@@ -50,14 +50,14 @@ const MenuFragment = () =>{
                                             </p>
                                         </Grid>
                                         <Grid item className={classes.mInfo}>
-                                            <p>
+                                            <div>
                                                 <p className={classes.properties}>
                                                     {queueTimes.get(mapKey)[1].properties}
                                                 </p>
                                                 <p>
                                                     {queueTimes.get(mapKey)[1].price}
                                                 </p>
-                                            </p>
+                                            </div>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -121,6 +121,7 @@ const MenuFragment = () =>{
                 .then(json => dispatch(menu(json.courses)));
         }
 
+        console.log(menuState);
         //checks that redux state has 2 entries
         if(menuState.length === 2) {
 
