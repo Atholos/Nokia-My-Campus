@@ -17,11 +17,12 @@ import ParkingCardFragment from "../fragments/ParkingCardFragment";
 /*eslint-enable */
 
 const Parking = () => {
+
+	const {isLoggedIn} = Authentication();
+	const {TopNavigationBar} = NaviBar();
 	const { getUsageDataNoProps} = API();
 	const {apiUrl} = ApiUrls();
-
 	const [firstRender, setFirstRender] = useState(true);
-
 	let count;
 	let capacity;
 
@@ -67,7 +68,7 @@ const Parking = () => {
 		data.forEach((area, aindex) => {
 			area.zones.parking.forEach((zone, zindex) => {
 
-				getUsageDataNoProps((apiUrl+'parking/status/'+zone.id)).then( usageData => {
+				getUsageDataNoProps((apiUrl + 'parking/status/' + zone.id)).then( usageData => {
 					count = usageData.count;
 					capacity = usageData.capacity;
 					if(count < 0){
@@ -95,15 +96,12 @@ const Parking = () => {
 		});
 	}
 
-
-	const {isLoggedIn} = Authentication();
-	const {TopNavigationBar} = NaviBar();
-
 	const ParkingPage = () => {
 		let cards = [];
 		data.forEach(area => {
 			cards.push(ParkingCardFragment().fullCard(area));
 		});
+
 		return (
 			<div>
 				{TopNavigationBar()}
@@ -111,10 +109,12 @@ const Parking = () => {
 			</div>
 		);
 	};
+
 	const AuthParking = () => { //eslint-disable-line
 		if (isLoggedIn()) {
 			return <ParkingPage/>;
-		} else {
+		}
+		else {
 			return <AuthLoading/>;
 		}
 	};

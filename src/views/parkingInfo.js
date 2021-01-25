@@ -27,6 +27,7 @@ const ParkingInfo = () => {
 	const {getParkingStatus, getParkingData, getParkingAreaName} = API();
 	const {formattedFullDate} = GlobalFunctions();
     const {isLoggedIn} = Authentication();
+	const {TopNavigationBar} = NaviBar();
 
 	const [tableData, setTableData] = useState([[strings.parkingTotalSpaces, ""], [strings.parkingUsedSpaces, ""], [strings.parkingAvailableSpaces, ""]]);
 	const [dataToday, setDataToday] = useState(null);
@@ -42,7 +43,7 @@ const ParkingInfo = () => {
 
 
 
-	useEffect(()=>{
+	useEffect(() => {
 
 		getParkingStatus(zone).then( usageData => {
 			let count = usageData["count"];
@@ -53,7 +54,7 @@ const ParkingInfo = () => {
 			else if(usageData["capacity"] < 0){
 				capacity = usageData["capacity"]*-1
 			}
-			setTableData([[strings.parkingTotalSpaces, ""+capacity], [strings.parkingUsedSpaces, ""+count], [strings.parkingAvailableSpaces, ""+(capacity-count)]]);
+			setTableData([[strings.parkingTotalSpaces, "" + capacity], [strings.parkingUsedSpaces, "" + count], [strings.parkingAvailableSpaces, "" + (capacity - count)]]);
 			setCapacity(usageData["capacity"]);
 		});
 
@@ -68,7 +69,6 @@ const ParkingInfo = () => {
 	}, []);
 
     const ParkingInfoPage = () => {
-		const {TopNavigationBar} = NaviBar();
 		return (
 			<div>
 				{TopNavigationBar()}
@@ -90,7 +90,8 @@ const ParkingInfo = () => {
 				</Box>
 			</div>
 		);
-    }
+    };
+
 	if (isLoggedIn()) {
 		return ParkingInfoPage();
 	} else {
