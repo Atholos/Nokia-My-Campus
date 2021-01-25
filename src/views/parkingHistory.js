@@ -31,7 +31,7 @@ const ParkingHistory = () => {
 	const { isLoggedIn } = Authentication();
 	const {getParkingStatus, getParkingData, getParkingAreaName} = API();
 	const {formattedFullDate} = GlobalFunctions();
-	
+
 	const [data, setData] = useState(null);
 	const [capacity, setCapacity] = useState(null);
 	const [selectedDate, setSelectedDate] = useState(() => {
@@ -39,11 +39,11 @@ const ParkingHistory = () => {
 		d.setDate(d.getDate()-1);
 		return d;
 	});
-	
+
 	const params = useQueryParams();
-	
+
 	const zone = params[0].zone;
-	
+
 	useEffect(() => {
 		getParkingData(zone, formattedFullDate(selectedDate)).then(json => {
 			setData(json);
@@ -53,7 +53,8 @@ const ParkingHistory = () => {
 		});
 	// eslint-disable-next-line	react-hooks/exhaustive-deps
 	}, [selectedDate]);
-	
+
+
     const ParkingHistoryPage = () => {
 		const {TopNavigationBar} = NaviBar();
 		//const {onItemClickNavigate} = GlobalFunctions();
@@ -107,7 +108,7 @@ const ParkingHistory = () => {
 	} else {
 		return <AuthLoading/>;
 	}
-		
+
 };
 
 export default ParkingHistory;

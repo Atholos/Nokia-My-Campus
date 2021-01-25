@@ -20,23 +20,23 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
             return out;
         }
     };
-	
+
 	const formatData = (rawData) => {
 		if (rawData == null) {
 			return [];
 		}
 		return dataToChart(rawData.samples, maximum);
-	}
-	
+	};
+
 	const createPrediction = (formattedData, formattedExpectedData) => {
-		let newData = []
+		let newData = [];
 		let maxLength = Math.max(formattedData.length, formattedExpectedData.length);
 		let predictionScalePoint = formattedData.length-1;
 		let predictionScaleFactor = 1;
 		if (data != null && formattedData.length > 0) {
 			//Calculate prediction scale factor and scale the prediction
-			if (formattedData.length < formattedExpectedData.length 
-			&& formattedData[predictionScalePoint].y > 1 
+			if (formattedData.length < formattedExpectedData.length
+			&& formattedData[predictionScalePoint].y > 1
 			&& formattedExpectedData[predictionScalePoint].y > 1) {
 				predictionScaleFactor = formattedData[predictionScalePoint].y / formattedExpectedData[predictionScalePoint].y;
 				formattedExpectedData.forEach((item, index, array) => {
@@ -45,7 +45,7 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 				});
 			}
 		}
-		
+
 		for (let i = 0; i < maxLength; i++) {
 			let point = {};
 			if (i < formattedData.length) {
@@ -68,7 +68,7 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 		maxY = Math.floor(Math.min(maxY*1.25+3, 100));
 		return newData;
 	};
-	
+
 	const finalizeDataForRender = (data) => {
 		let out = [];
 		let nextHour = 6;
@@ -85,15 +85,15 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
 		});
 		return out;
 	};
-	
-	
+
+
 	let maxY = 0;
 	let formattedData = formatData(data);
 	let formattedExpectedData = formatData(expectedData);
-	
+
 	let dataWithPrediction = finalizeDataForRender(createPrediction(formattedData, formattedExpectedData));
 	let ticks = ["6:00", "8:00", "10:00", "12:00", "14:00", "16:00", "18:00"];
-	
+
 	return (
 		<ResponsiveContainer width="100%" height={300}>
 			<AreaChart data={dataWithPrediction} margin={{left: -20, top: 20}}>

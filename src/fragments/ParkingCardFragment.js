@@ -19,27 +19,27 @@ import {PieChart, Pie} from 'recharts';
 const ParkingCardFragment = () => {
     const {onItemClickNavigate} = GlobalFunctions();
 	const {getParkingAreaName} = API();
-	
+
 	const idToLocalizedString = (id, shortName) => {
 		if (shortName) {
 			return strings[id+"Short"];
 		}
 		return getParkingAreaName(id);
-	}
-	
+	};
+
 	const nameToLocalizedString = (name) => {
 		switch (name) {
 			case "inside":
 				return strings.inside;
 			case "roof":
 				return strings.rooftop;
-			
+
 			default:
 				return name;
 		}
-		
+
 	};
-	
+
 	const categoryToLocalizedString = (name) => {
 		switch (name) {
 			case "parking":
@@ -51,7 +51,7 @@ const ParkingCardFragment = () => {
 				return name;
 		}
 	};
-	
+
 	const areaPie = (count, capacity) => {
 		const colors = ["#4caf50", "#ffde18", "#df2929"];
 		let color;
@@ -69,21 +69,32 @@ const ParkingCardFragment = () => {
 		return (
 			<Pie dataKey="value" data={[{fill: color, value: usage}, {fill: "#eeeeee", value: remaining}]} startAngle={90} endAngle={-270} innerRadius={10} outerRadius={20} fill="#8884d8"  isAnimationActive={false}/>
 		);
-	}
-	
+	};
+
 
 	const createZoneItem = (zone, small) => {
+		let count;
+		let capacity;
+
 		if (zone.usageData == null) {
 			zone.loading = true;
 		} else {
 			zone.loading = false;
+			count = zone.usageData.count;
+			capacity = zone.usageData.capacity;
+			if(count < 0){
+				count = count * -1
+			}
+			if(capacity < 0){
+				capacity = capacity * -1
+			}
 		}
 		let utilizationString;
 		if (zone.loading) {
 			utilizationString = strings.loading;
 		} else {
 			if (small) {
-				utilizationString = ""+Math.round(zone.usageData.count/zone.usageData.capacity*100)+"%";
+				utilizationString = ""+Math.round(count/capacity*100)+"%";
 			}
 			else {
 				if (zone.estimate) {
@@ -93,16 +104,16 @@ const ParkingCardFragment = () => {
 				}
 				utilizationString = utilizationString.replace("{0}", (zone.usageData.capacity-zone.usageData.count)).replace("{1}", zone.usageData.capacity);
 			}
-			
+
 		}
-		
+
 		let link;
 		if (zone["linkId"] !== undefined) {
 			link = zone["linkId"];
 		} else {
 			link = zone["id"];
 		}
-		
+
 		//Name is a short description of a zone, like "roof", intended to be seen with other zones from the same area
 		//ID based titles can be shown with no context, like "P10 Rooftop Parking"
 		let title;
@@ -111,19 +122,19 @@ const ParkingCardFragment = () => {
 		} else {
 			title = idToLocalizedString(zone["id"], small);
 		}
-		
+
 		return (
 			<ListItem button onClick={()=>onItemClickNavigate(link)}>
 				<ListItemAvatar>
 					<PieChart width={40} height={40}>
-						{(zone.loading ? areaPie(0, 1) : areaPie(zone.usageData.count, zone.usageData.capacity))}
+						{(zone.loading ? areaPie(0, 1) : areaPie(count, capacity))}
 					</PieChart>
 				</ListItemAvatar>
 				<ListItemText primary={title} secondary={utilizationString} />
 			</ListItem>
 		);
 	};
-	
+
 	const zones = (zoneData, category) => {
 		if (category in zoneData) {
 			let out = (
@@ -149,7 +160,7 @@ const ParkingCardFragment = () => {
 		});
 		return out;
 	};
-	
+
 	const fullCard = (data) => {
 		return (
 			<Box m={2} mb={0}>
@@ -166,13 +177,9 @@ const ParkingCardFragment = () => {
 		);
 	};
 
-	const singleAreaWidget = (data, small) => {
-		return createZoneItem(data, small);
-	};
-
 	return {
 		fullCard,
-		singleAreaWidget,
+		createZoneItem,
 	}
 };
 
