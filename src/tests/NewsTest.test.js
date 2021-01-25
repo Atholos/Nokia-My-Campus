@@ -3,6 +3,12 @@ import { createMount,createShallow } from '@material-ui/core/test-utils';
 import News from './../views/news';
 import HighlightItem from './../fragments/NewsHighlight';
 
+//Needed imports for react redux testing
+import { Provider } from 'react-redux'
+import NewsReducer from "../reducers/NewsReducer";
+import { createStore, combineReducers } from 'redux';
+
+
 describe('News', () => {
   const highlight = {
     title: "Halloween party",
@@ -33,6 +39,13 @@ describe('News', () => {
     },
   };
 
+  //!!!!!!!!!!! TEST STORE FOR NEWS WITH REDUX !!!!!!!!!!!!!!
+  const store = createStore(
+    combineReducers({
+      NewsReducer
+    })
+  );
+
   let mount;
   let shallow;
 
@@ -53,8 +66,9 @@ describe('News', () => {
   });
 
   it('testing highlight snapshot', () => {
-    const tree = mount(<HighlightItem highlight={highlight} />);
-    console.log( tree);
+    const tree = shallow(<Provider store={store}><HighlightItem highlight={highlight} /></Provider>);
+    //console.log( tree);
     expect(tree).toMatchSnapshot();
   });
+  
 });
