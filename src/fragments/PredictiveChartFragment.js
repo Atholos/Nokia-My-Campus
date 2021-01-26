@@ -27,7 +27,6 @@ const PredictiveChartFragment = (data, expectedData, maximum) => {
     };
 
 	const formatData = (rawData) => {
-		console.log(rawData);
 		if (rawData == null) {
 			return [];
 		}

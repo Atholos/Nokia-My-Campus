@@ -68,30 +68,31 @@ const Parking = () => {
 		data.forEach((area, aindex) => {
 			area.zones.parking.forEach((zone, zindex) => {
 
-				getUsageDataNoProps((apiUrl + 'parking/status/' + zone.id)).then( usageData => {
-					count = usageData.count;
-					capacity = usageData.capacity;
-					if(count < 0){
+				getUsageDataNoProps((apiUrl + 'parking/status/' + zone.id))
+					.then( usageData => {
+						count = usageData.count;
+						capacity = usageData.capacity;
+						if(count < 0){
 						count = count * -1
-					}
-					if(capacity < 0){
+						}
+						if(capacity < 0){
 						capacity = capacity * -1
-					}
+						}
 
-					usageData.count = Math.max(Math.min(capacity, count), 0);
-					data[aindex].zones.parking[zindex].usageData = usageData;
+						usageData.count = Math.max(Math.min(capacity, count), 0);
+						data[aindex].zones.parking[zindex].usageData = usageData;
 
-					if (zone.id === 'P10TOP') {
-						let p10ev = {count: Math.min(98, Math.floor(count * 2.1)), capacity: 98};
-						area.zones.ev_charging.forEach((evzone, evindex) => {
+						if (zone.id === 'P10TOP') {
+							let p10ev = {count: Math.min(98, Math.floor(count * 2.1)), capacity: 98};
+							area.zones.ev_charging.forEach((evzone, evindex) => {
 
-							if (evzone.name === 'roof') {
-								data[aindex].zones.ev_charging[evindex].usageData = p10ev;
-							}
-						});
-					}
-					setData([...data]);
-				});
+								if (evzone.name === 'roof') {
+									data[aindex].zones.ev_charging[evindex].usageData = p10ev;
+								}
+							});
+						}
+						setData([...data]);
+					});
 			});
 		});
 	}

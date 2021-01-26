@@ -121,7 +121,8 @@ const API = () => {
 					throw Error("No Token, getParkingStatus")
 				}
 			})
-		} else {
+		}
+		else {
 			const url = parkingStatusUrl + location;
 			return fetchGetUrl(url, 'user').then((json) => {
 				if (json) {
@@ -153,7 +154,8 @@ const API = () => {
 					throw Error("No Token, getParkingData")
 				}
 			});
-		} else {
+		}
+		else {
 			return getUsageData(url + location + '/' + date).then((json) => {
 				if (json) {
 					return json
@@ -167,17 +169,17 @@ const API = () => {
 	const getParkingAreaName = (id) => {
 		switch(id) {
 			case "P5":
-				return "P5, "+strings.parkingCategoryParking+' '+strings.inside;
+				return "P5, "+strings.parkingCategoryParking + ' ' + strings.inside;
 			case "P10":
-				return "P10, "+strings.parkingCategoryParking+' '+strings.inside;
+				return "P10, "+strings.parkingCategoryParking + ' ' + strings.inside;
 			case "P10TOP":
-				return "P10, "+strings.parkingCategoryParking+' '+strings.rooftop;
+				return "P10, "+strings.parkingCategoryParking + ' ' + strings.rooftop;
 			case "P10EV":
-				return "P10, "+strings.parkingCategoryEV+' '+strings.rooftop;
+				return "P10, "+strings.parkingCategoryEV + ' ' + strings.rooftop;
 			default:
 				return strings.unknownParkingArea;
 		}
-	}
+	};
 
     const dataToChart = (json) => {
         if (json !== undefined) {

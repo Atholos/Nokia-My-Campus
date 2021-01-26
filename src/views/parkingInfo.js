@@ -55,7 +55,7 @@ const ParkingInfo = () => {
 				capacity = usageData["capacity"]*-1
 			}
 			setTableData([[strings.parkingTotalSpaces, "" + capacity], [strings.parkingUsedSpaces, "" + count], [strings.parkingAvailableSpaces, "" + (capacity - count)]]);
-			setCapacity(usageData["capacity"]);
+			setCapacity(capacity);
 		});
 
 		getParkingData(zone, formattedFullDate(new Date())).then(json => {
@@ -65,7 +65,7 @@ const ParkingInfo = () => {
 		getParkingData(zone, formattedFullDate(expectedDataDate)).then(json => {
 			setDataWeekAgo(json);
 		});
-	// eslint-disable-next-line	react-hooks/exhaustive-deps
+		// eslint-disable-next-line	react-hooks/exhaustive-deps
 	}, []);
 
     const ParkingInfoPage = () => {
