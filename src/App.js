@@ -7,6 +7,7 @@ import {useRoutes} from 'hookrouter';
 import './styles/App.css';
 import routes from './hooks/Routes';
 import Update from './Update';
+import { Notifications } from 'react-push-notification';
 
 const App = () => {
   const routeResult = useRoutes(routes);
@@ -14,6 +15,7 @@ const App = () => {
   // routeResult handles the navigation using hookrouter, check Routes.js for editing
   return (
       <div className="App">
+          <Notifications />
           <Update/>
           {routeResult}
       </div>

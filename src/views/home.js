@@ -14,6 +14,7 @@ import blue from '@material-ui/core/colors/blue';
 import Widgets from '../fragments/WidgetFragment';
 import EditButton from '../fragments/EditButton';
 
+
 const Home = (props) => {
   const {HomepageWidget} = Widgets(props);
   const {isLoggedIn} = Authentication();
@@ -42,9 +43,9 @@ const Home = (props) => {
               <Grid item xs={10}>
               {EditIconButton()}
                 <Grid item xs>
-
                 </Grid>
               </Grid>
+
               {HomepageWidget()}
             </Grid>
           </Container>
