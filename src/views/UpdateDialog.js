@@ -1,6 +1,6 @@
 import React from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.minimal.css";
 // UpdateDialog, shown when app updates
 
 const UpdateDialog = (params) => {
@@ -22,9 +22,8 @@ const UpdateDialog = (params) => {
         </div>
       </div>
        */
-      <div>
-          {toast.dark(notify)}
-          <ToastContainer autoClose={false} closeButton={false}/>
+      <div onLoad={toast.dark(notify, {position: "bottom-center", className: "toastContainer"})}>
+          <ToastContainer style={{color: "#124191"}} autoClose={false} closeButton={false}/>
       </div>
   );
 };

@@ -45,7 +45,6 @@ const Home = (props) => {
                 <Grid item xs>
                 </Grid>
               </Grid>
-
               {HomepageWidget()}
             </Grid>
           </Container>
