@@ -39,6 +39,7 @@ describe('News', () => {
     },
   };
 
+  
   //!!!!!!!!!!! TEST STORE FOR NEWS WITH REDUX !!!!!!!!!!!!!!
   const store = createStore(
     combineReducers({
@@ -61,13 +62,11 @@ describe('News', () => {
 
   it('Mounting News', () => {
     const tree = mount(<News/>);
-    console.log(tree);
     expect(tree).toMatchSnapshot();
   });
 
   it('testing highlight snapshot', () => {
     const tree = shallow(<Provider store={store}><HighlightItem highlight={highlight} /></Provider>);
-    //console.log( tree);
     expect(tree).toMatchSnapshot();
   });
   
