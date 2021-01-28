@@ -9,7 +9,7 @@ RUN npm ci
 COPY ./src ./src
 COPY ./public ./public
 
-RUN npm run build --prod
+RUN npm run build
 
 FROM nginx:1.16.1
 
