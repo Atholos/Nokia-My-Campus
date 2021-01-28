@@ -39,9 +39,11 @@ const Update = () => {
                 onUpdate={() => updateServiceWorker()}
             />
         )}
-
       </div>
 
   );
 };
+
+
+
 export default Update;

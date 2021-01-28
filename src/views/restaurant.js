@@ -25,7 +25,6 @@ const Restaurant = () => {
         if (isLoggedIn()) {
             return <RestaurantPage/>
         } else {
-
             return <AuthLoading/>
         }
     };

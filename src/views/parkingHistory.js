@@ -62,7 +62,7 @@ const ParkingHistory = () => {
 			<div>
 				{TopNavigationBar()}
 				<Box p={16} display="flex" alignItems="center" padding="16px">
-					<Typography variant="subtitle2" component="h1" align="left">{strings.history+": "+getParkingAreaName(zone)}</Typography>
+					<Typography variant="subtitle2" component="h1" align="left">{strings.history + ": " + getParkingAreaName(zone)}</Typography>
 				</Box>
 				<Box px={2}>
 					{PredictiveChartFragment(data, null, capacity)}
@@ -102,7 +102,7 @@ const ParkingHistory = () => {
 				</Box>
 			</div>
 		);
-    }
+    };
 	if (isLoggedIn()) {
 		return ParkingHistoryPage();
 	} else {

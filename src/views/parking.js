@@ -17,11 +17,12 @@ import ParkingCardFragment from "../fragments/ParkingCardFragment";
 /*eslint-enable */
 
 const Parking = () => {
+
+	const {isLoggedIn} = Authentication();
+	const {TopNavigationBar} = NaviBar();
 	const { getUsageDataNoProps} = API();
 	const {apiUrl} = ApiUrls();
-
 	const [firstRender, setFirstRender] = useState(true);
-
 	let count;
 	let capacity;
 
@@ -67,43 +68,41 @@ const Parking = () => {
 		data.forEach((area, aindex) => {
 			area.zones.parking.forEach((zone, zindex) => {
 
-				getUsageDataNoProps((apiUrl+'parking/status/'+zone.id)).then( usageData => {
-					count = usageData.count;
-					capacity = usageData.capacity;
-					if(count < 0){
+				getUsageDataNoProps((apiUrl + 'parking/status/' + zone.id))
+					.then( usageData => {
+						count = usageData.count;
+						capacity = usageData.capacity;
+						if(count < 0){
 						count = count * -1
-					}
-					if(capacity < 0){
+						}
+						if(capacity < 0){
 						capacity = capacity * -1
-					}
+						}
 
-					usageData.count = Math.max(Math.min(capacity, count), 0);
-					data[aindex].zones.parking[zindex].usageData = usageData;
+						usageData.count = Math.max(Math.min(capacity, count), 0);
+						data[aindex].zones.parking[zindex].usageData = usageData;
 
-					if (zone.id === 'P10TOP') {
-						let p10ev = {count: Math.min(98, Math.floor(count * 2.1)), capacity: 98};
-						area.zones.ev_charging.forEach((evzone, evindex) => {
+						if (zone.id === 'P10TOP') {
+							let p10ev = {count: Math.min(98, Math.floor(count * 2.1)), capacity: 98};
+							area.zones.ev_charging.forEach((evzone, evindex) => {
 
-							if (evzone.name === 'roof') {
-								data[aindex].zones.ev_charging[evindex].usageData = p10ev;
-							}
-						});
-					}
-					setData([...data]);
-				});
+								if (evzone.name === 'roof') {
+									data[aindex].zones.ev_charging[evindex].usageData = p10ev;
+								}
+							});
+						}
+						setData([...data]);
+					});
 			});
 		});
 	}
-
-
-	const {isLoggedIn} = Authentication();
-	const {TopNavigationBar} = NaviBar();
 
 	const ParkingPage = () => {
 		let cards = [];
 		data.forEach(area => {
 			cards.push(ParkingCardFragment().fullCard(area));
 		});
+
 		return (
 			<div>
 				{TopNavigationBar()}
@@ -111,10 +110,12 @@ const Parking = () => {
 			</div>
 		);
 	};
+
 	const AuthParking = () => { //eslint-disable-line
 		if (isLoggedIn()) {
 			return <ParkingPage/>;
-		} else {
+		}
+		else {
 			return <AuthLoading/>;
 		}
 	};

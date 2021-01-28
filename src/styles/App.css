@@ -83,6 +83,10 @@ body {
     position: relative;
     align-content: center;
 }
+.toastContainer {
+    background-color: #394357;
+    color: white;
+}
 @media (min-height: 100px) {
     .AppUpdatedHeading {
         color: white;

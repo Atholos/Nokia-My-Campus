@@ -22,8 +22,8 @@ const Widgets = () => {
   const defaultWidgetPicture = [
       require('../assets/plus_sign.png')
     ];
-  
-    // Creates a item of every widget for the Dialog 
+
+    // Creates a item of every widget for the Dialog
     const SelectViewDialog = (props) => {
 
         const { onClose, selectedValue, open } = props;
@@ -31,7 +31,7 @@ const Widgets = () => {
         const handleClose = () => {
             onClose(selectedValue);
        };
-   
+
        const handleListItemClick = (value) => {
            onClose(value);
        };
@@ -68,13 +68,13 @@ const Widgets = () => {
         const [open, setOpen] = useState(false);
 
         const selectedWidgets = useSelector(state => state.WidgetReducer);
-        
+
         const dispatch = useDispatch();
 
         const handleClickOpen = () => {
             setOpen(true);
           };
-        
+
           //Closes the dialog window and saves the value in selectedwidgets array
         const handleClose = (value) => {
             setOpen(false);

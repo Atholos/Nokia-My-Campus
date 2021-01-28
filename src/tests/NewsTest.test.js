@@ -3,6 +3,12 @@ import { createMount,createShallow } from '@material-ui/core/test-utils';
 import News from './../views/news';
 import HighlightItem from './../fragments/NewsHighlight';
 
+//Needed imports for react redux testing
+import { Provider } from 'react-redux'
+import NewsReducer from "../reducers/NewsReducer";
+import { createStore, combineReducers } from 'redux';
+
+
 describe('News', () => {
   const highlight = {
     title: "Halloween party",
@@ -10,7 +16,7 @@ describe('News', () => {
     description:
       "Nokia halloween party this saturday at dream cafe! Come join us for some eerie fun",
     timestamp: "October 20, 2020",
-    imgUrl: require("../assets/pexels-wilson-vitorino-3230473.jpg"),
+    imgUrl: require("../assets/default.jpg"),
     imgTitle: "Halloween Party",
     paragraphs: {
       1: "This is the world we live in",
@@ -28,10 +34,18 @@ describe('News', () => {
     Elitr iudicabit eloquentiam cu vim. Graecis mediocritatem his in, ne erant harum soleat cum. In natum propriae mel. Quod impetus.`,
     },
     paragraphImg: {
-      2: require("../assets/pexels-wilson-vitorino-3230473.jpg"),
-      5: require("../assets/pexels-wilson-vitorino-3230473.jpg"),
+      2: require("../assets/default.jpg"),
+      5: require("../assets/default.jpg"),
     },
   };
+
+  
+  //!!!!!!!!!!! TEST STORE FOR NEWS WITH REDUX !!!!!!!!!!!!!!
+  const store = createStore(
+    combineReducers({
+      NewsReducer
+    })
+  );
 
   let mount;
   let shallow;
@@ -46,15 +60,14 @@ describe('News', () => {
     shallow.cleanUp();
   });
 
-  it('should work', () => {
+  it('Mounting News', () => {
     const tree = mount(<News/>);
-    console.log(tree);
     expect(tree).toMatchSnapshot();
   });
 
   it('testing highlight snapshot', () => {
-    const tree = mount(<HighlightItem highlight={highlight} />);
-    console.log(tree);
+    const tree = shallow(<Provider store={store}><HighlightItem highlight={highlight} /></Provider>);
     expect(tree).toMatchSnapshot();
   });
+  
 });

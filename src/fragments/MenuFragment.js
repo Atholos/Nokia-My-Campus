@@ -50,14 +50,14 @@ const MenuFragment = () =>{
                                             </p>
                                         </Grid>
                                         <Grid item className={classes.mInfo}>
-                                            <p>
+                                            <div>
                                                 <p className={classes.properties}>
                                                     {queueTimes.get(mapKey)[1].properties}
                                                 </p>
                                                 <p>
                                                     {queueTimes.get(mapKey)[1].price}
                                                 </p>
-                                            </p>
+                                            </div>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -121,6 +121,7 @@ const MenuFragment = () =>{
                 .then(json => dispatch(menu(json.courses)));
         }
 
+        console.log(menuState);
         //checks that redux state has 2 entries
         if(menuState.length === 2) {
 
@@ -128,28 +129,21 @@ const MenuFragment = () =>{
             if(menuState[1] !== null) {
 
                 let check = menuState[1];
-
                 //this gives us the amount of menu entries there are
                 let lengthy = Object.keys(check).length + 1;
-
                 //amount of queue times
                 let queueLength = menuState[0].size;
-
                 //map for data
                 let temp = new Map();
 
                 // Check that queueTimes has all entries, and that this part of the program didnt run already
                 if (queueLength === 8 && stopper === 0) {
-
                     //run for each entry from sodexo
                     for (let i = 1; i < lengthy; i++) {
-
                         // run for each entry in Data.js
                         for (let l = 1; l < 9; l++) {
-
                             //check for matching values
                             if (check[i].category === lines.get(l)) {
-
                                 //set the values into the Map
                                 temp.set(
                                     l, [menuState[0].get(l), check[i]]

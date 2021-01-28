@@ -12,7 +12,7 @@ import strings from "../localization";
 import Carousel from "react-material-ui-carousel";
 
 //this function is used to create a menu widget
-const RWidget = (props) =>{
+const RWidget = () =>{
 
     const classes = useStyle();
     const {menuByDate} = API();
@@ -55,27 +55,27 @@ const RWidget = (props) =>{
                     <Carousel autoPlay={false} navButtonsAlwaysVisible={false}
                               animation="slide" noWrap={true}>
 
-                    {(Object.keys(item) || []).map(mapKey => (
-                        <div key={mapKey} className={classes.wFrag}>
+                        {(Object.keys(item) || []).map(mapKey => (
+                            <div key={mapKey} className={classes.wFrag}>
 
                                 <Grid item container direction="column" className={classes.wMenuStyle}>
 
-                                        <Grid item className={classes.Card}>
-                                            <Grid container direction="row">
-                                                <Grid item className={classes.TopC}>
+                                    <Grid item className={classes.Card}>
+                                        <Grid container direction="row">
+                                            <Grid item className={classes.TopC}>
                                                 <p>
                                                     {item[mapKey].category}
                                                 </p>
-                                                </Grid>
-                                                <Grid item className={classes.wItem}>
-                                                    <p>
-                                                        {item[mapKey].title_fi}
-                                                    </p>
-                                                </Grid>
+                                            </Grid>
+                                            <Grid item className={classes.wItem}>
+                                                <p>
+                                                    {item[mapKey].title_fi}
+                                                </p>
                                             </Grid>
                                         </Grid>
+                                    </Grid>
                                 </Grid>
-                        </div>
+                            </div>
                         ))}
                     </Carousel>
                 </Box>
