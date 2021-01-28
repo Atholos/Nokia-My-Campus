@@ -1,3 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Restaurant renders 1`] = `ShallowWrapper {}`;
+exports[`Restaurant renders 1`] = `
+<Restaurant>
+  <AuthRestaurant>
+    <AuthLoading>
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "display": "flex",
+            "height": "100%",
+            "justifyContent": "center",
+            "left": 0,
+            "margin": "auto 0",
+            "position": "absolute",
+            "right": 0,
+            "textAlign": "center",
+            "top": 0,
+          }
+        }
+      >
+        <WithStyles(ForwardRef(CircularProgress))
+          style={Object {}}
+        >
+          <ForwardRef(CircularProgress)
+            classes={
+              Object {
+                "circle": "MuiCircularProgress-circle",
+                "circleDeterminate": "MuiCircularProgress-circleDeterminate",
+                "circleDisableShrink": "MuiCircularProgress-circleDisableShrink",
+                "circleIndeterminate": "MuiCircularProgress-circleIndeterminate",
+                "circleStatic": "MuiCircularProgress-circleStatic",
+                "colorPrimary": "MuiCircularProgress-colorPrimary",
+                "colorSecondary": "MuiCircularProgress-colorSecondary",
+                "determinate": "MuiCircularProgress-determinate",
+                "indeterminate": "MuiCircularProgress-indeterminate",
+                "root": "MuiCircularProgress-root",
+                "static": "MuiCircularProgress-static",
+                "svg": "MuiCircularProgress-svg",
+              }
+            }
+            style={Object {}}
+          >
+            <div
+              className="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+              role="progressbar"
+              style={
+                Object {
+                  "height": 40,
+                  "width": 40,
+                }
+              }
+            >
+              <svg
+                className="MuiCircularProgress-svg"
+                viewBox="22 22 44 44"
+              >
+                <circle
+                  className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                  cx={44}
+                  cy={44}
+                  fill="none"
+                  r={20.2}
+                  strokeWidth={3.6}
+                  style={Object {}}
+                />
+              </svg>
+            </div>
+          </ForwardRef(CircularProgress)>
+        </WithStyles(ForwardRef(CircularProgress))>
+      </div>
+    </AuthLoading>
+  </AuthRestaurant>
+</Restaurant>
+`;
