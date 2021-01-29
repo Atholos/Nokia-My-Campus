@@ -6,7 +6,6 @@ import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import strings from '../localization';
 import InfoStyles from "../styles/infoStyles";
-import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.minimal.css";
 
 const Info = (props) => {

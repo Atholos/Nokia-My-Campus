@@ -16,7 +16,6 @@ import ApiUrls from "../hooks/ApiUrls";
 import useStyle from "../styles/restaurantStyles";
 import {menu} from "../actions/RestaurantActions";
 import {useDispatch, useSelector} from "react-redux";
-import {toast, ToastContainer} from "react-toastify";
 
 const MenuFragment = () =>{
 
