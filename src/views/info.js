@@ -6,11 +6,13 @@ import Authentication from '../hooks/Authentication';
 import AuthLoading from './authLoading';
 import strings from '../localization';
 import InfoStyles from "../styles/infoStyles";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.minimal.css";
 
 const Info = (props) => {
   const {TopNavigationBar} = NaviBar();
   const {isLoggedIn} = Authentication();
-  const {infoStyle} = InfoStyles
+  const {infoStyle} = InfoStyles;
 
   const InfoPage = () => {
     return (

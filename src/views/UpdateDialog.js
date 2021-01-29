@@ -7,8 +7,8 @@ const UpdateDialog = (params) => {
 
     const notify = ({closeToast}) => (
         <div>
-            <p>There is an update available</p>
-            <button onClick={params.onUpdate}>Update now</button>
+            <div className={'toastText'}>There is an update available</div>
+            <button className={'toastButton'} onClick={params.onUpdate}>Update now</button>
         </div>
     );
 

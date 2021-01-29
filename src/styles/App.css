@@ -84,8 +84,28 @@ body {
     align-content: center;
 }
 .toastContainer {
-    background-color: #394357;
+    background-color: #124191;
     color: white;
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    border-radius: 6px;
+}
+.toastButton {
+    background-color: #124191;
+    border: 2px solid white;
+    color: white;
+    padding: 5px 5px;
+    margin-top: 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 6px;
+}
+.toastText {
+    margin-top: 3px;
 }
 @media (min-height: 100px) {
     .AppUpdatedHeading {
