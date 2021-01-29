@@ -17,9 +17,9 @@
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ dev ]
     
 env:
     NODE_VERSION: '14.15.4'                # set this to the node version to use
@@ -52,6 +52,6 @@ jobs:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}  
     - run: |
           # building creating a new image tags for version control
-          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:latest
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:${{ github.sha }}
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/pwaapp:latest
+          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/devmycampus:${{ github.sha }} -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/devmycampus:latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/devmycampus:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/devmycampus:latest
