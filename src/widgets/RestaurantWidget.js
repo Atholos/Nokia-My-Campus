@@ -22,9 +22,9 @@ const RWidget = () =>{
     const [menuData, setMenuData] = useState({
         courses: {
             1:{
-                title_fi: "Ei dataa saatavilla",
-                title_en: "No data available",
-                category: "Restaurant",
+                title_fi: strings.noDataAvailable,
+                title_en: strings.noDataAvailable,
+                category: strings.topBarMenuItemRestaurant,
                 price: "",
                 properties: "",
             },

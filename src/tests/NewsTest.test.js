@@ -7,9 +7,14 @@ import HighlightItem from './../fragments/NewsHighlight';
 import { Provider } from 'react-redux'
 import NewsReducer from "../reducers/NewsReducer";
 import { createStore, combineReducers } from 'redux';
+import LocalStorageOperations from '../hooks/LocalStorageOperations';
 
 
 describe('News', () => {
+  const { create } = LocalStorageOperations()
+  //let json = {username: 'username', token: 'token'};
+  //let user = create(JSON.stringify(json), 'user')
+
   const highlight = {
     title: "Halloween party",
     higlight: true,
@@ -38,7 +43,6 @@ describe('News', () => {
       5: require("../assets/default.jpg"),
     },
   };
-
   
   //!!!!!!!!!!! TEST STORE FOR NEWS WITH REDUX !!!!!!!!!!!!!!
   const store = createStore(

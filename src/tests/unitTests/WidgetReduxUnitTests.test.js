@@ -60,7 +60,8 @@ describe('Redux unit tests', () => {
         expect(reducer(fakeState,
             {
                 type: 'INCREMENT',
-                value: expectedReducer})).toEqual([expectedReducer])
+                value: expectedReducer
+            })).toEqual([expectedReducer])
     });
 
 });

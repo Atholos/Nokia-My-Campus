@@ -3,9 +3,10 @@
     This file contains all the localized strings in the app.
     Current Languages: Fi, En, Se.
 */
-import LocalizedStrings from 'react-localization'
-let strings = new LocalizedStrings({
-    en:{
+//import LocalizedStrings from 'react-localization'
+//new LocalizedStrings({ en:
+const strings =
+    {
         signIn: "Sign In",
         signUp: "Sign Up",
         emailAddress: "Email Address",
@@ -109,8 +110,10 @@ let strings = new LocalizedStrings({
         donut: "pie",
         remWidgets: "Are you sure you want to remove your widgets?",
         browsenews: "Browse news",
-    },
-
+        noDataAvailable: 'No data available',
+    };
+export default strings;
+/*
     fi:{
         signIn: "Kirjaudu",
         signUp: "Rekisteröidy",
@@ -306,3 +309,5 @@ let strings = new LocalizedStrings({
 });
 
 export default strings;
+
+*/
