@@ -30,6 +30,7 @@
     "jest-extended": "^0.11.5",
     "package.json": "^2.0.1",
     "react": "^16.13.1",
+    "react-aad-msal": "^2.3.5",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^16.13.1",
     "react-localization": "^1.0.15",

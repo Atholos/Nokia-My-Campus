@@ -11,9 +11,9 @@ import LocalStorageOperations from '../hooks/LocalStorageOperations';
 
 
 describe('News', () => {
-  const { create } = LocalStorageOperations()
-  //let json = {username: 'username', token: 'token'};
-  //let user = create(JSON.stringify(json), 'user')
+  const { create } = LocalStorageOperations();
+  let json = {username: 'username', token: 'token'};
+  
 
   const highlight = {
     title: "Halloween party",
