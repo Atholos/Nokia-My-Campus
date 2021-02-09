@@ -5,12 +5,15 @@ The applications Authentication will be made with this library so only Azure cer
 */
 //import { MsalAuthProvider, LoginType } from 'react-aad-msal';
 
+require('dotenv').config();
+
 // Msal Configuration
 const config = {
     auth: {
-        authority: 'https://login.microsoftonline.com/common',
+        authority: 'https://login.microsoftonline.com/'+process.env.AZURE_TENANT_AUTHENTICATION,
         clientId: process.env.AZURE_AD_CLIENT_ID,
-        redirectUri: process.env.REDIRECT_URI
+        redirectUri: process.env.REDIRECT_URI,
+        scopes: ['openid', 'profile', 'User.Read']
   },
   cache: {
     cacheLocation: 'localStorage', // This configures where you cache wil be stored
@@ -18,10 +21,4 @@ const config = {
   }
 };
 
-const loginRequest = {
-  scopes: ['openid', 'profile', 'User.Read']
-};
-
-const tokenRequest = {
-  scopes: ['Mail.Read']
-};
+export default config;

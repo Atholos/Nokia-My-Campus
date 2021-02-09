@@ -9,6 +9,7 @@ import WMenuReducer from "./WMenuReducer";
 import MenuReducer from "./MenuReducer";
 import EditModeRecuder from "./EditModeReducer";
 import NewsReducer from "./NewsReducer";
+import MsalReducer from "./MsalReducer";
 
 // combines update, widget and heatmap reducers
 const RootReducer = combineReducers({
@@ -19,6 +20,7 @@ const RootReducer = combineReducers({
     MenuReducer,
     EditModeRecuder,
     NewsReducer,
+    MsalReducer
 });
 
 export default RootReducer
